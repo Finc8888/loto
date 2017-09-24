@@ -41,3 +41,54 @@
 # модуль random: http://docs.python.org/3/library/random.html
 # Домашнее задание на GitHub
 # https://github.com/GeekBrainsTutorial/Python_lessons_basic/tree/master/lesson07
+#Создание функции-генератора для получение случайного бочонка
+from random import randint, sample
+import itertools as it
+def gen():
+	stack = iter([randint(1, 90) for i in range(90)])
+	return next(stack)
+#print(gen())
+#Генерация позиции нахождение числа в карточке
+
+def card_str():
+	def position():
+		samp = range(9)
+		stack = iter(sample(samp, 5)) #for i in range(5)])
+		return next(stack)
+		# print(stack)
+	samp = range(1, 91)
+	stack = iter(sample(samp, 15))
+	a_field = ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "]
+	b_field = ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "]
+	c_field = ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "]
+	for i in range(5):
+		a_field[position()] = next(stack)
+		print(a_field)
+	for i in range(5):
+		b_field[position()] = next(stack)
+		print(b_field)
+	for i in range(5):
+		c_field[position()] = next(stack)
+		print(c_field)
+	
+	sign = it.chain(a_field, b_field, c_field)
+	print(list(sign))
+	print("Карточка компьютера".center(35, "-"))
+	# for j in range(3):
+	# 	for i in sign:
+	# 		print(i)
+	# 		print("\n")
+	a = iter(a_field)
+	b = iter(b_field)
+	c = iter(c_field)
+	for i in a:
+		print(i, end = " ")
+	print("\n")
+	for i in b:
+		print(i, end = " ")
+	print("\n")
+	for i in c:
+		print(i, end = " ")
+	print("\n")
+# print(position())
+print(card_str())
